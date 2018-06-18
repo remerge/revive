@@ -9,11 +9,11 @@ import (
 
 	"github.com/mgechev/dots"
 
-	"github.com/mgechev/revive/formatter"
+	"github.com/remerge/revive/formatter"
 
 	"github.com/BurntSushi/toml"
-	"github.com/mgechev/revive/lint"
-	"github.com/mgechev/revive/rule"
+	"github.com/remerge/revive/lint"
+	"github.com/remerge/revive/rule"
 )
 
 func fail(err string) {

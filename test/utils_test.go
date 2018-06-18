@@ -15,8 +15,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/mgechev/revive/lint"
 	"github.com/pkg/errors"
+	"github.com/remerge/revive/lint"
 )
 
 func testRule(t *testing.T, filename string, rule lint.Rule, config ...*lint.RuleConfig) {
@@ -251,13 +251,13 @@ func TestLintName(t *testing.T) {
 		{"Foo_bar", "FooBar"},
 		{"foo_WiFi", "fooWiFi"},
 		{"id", "id"},
-		{"Id", "ID"},
-		{"foo_id", "fooID"},
-		{"fooId", "fooID"},
+		{"Id", "Id"},
+		{"foo_id", "fooId"},
+		{"fooId", "fooId"},
 		{"fooUid", "fooUID"},
 		{"idFoo", "idFoo"},
 		{"uidFoo", "uidFoo"},
-		{"midIdDle", "midIDDle"},
+		{"midIdDle", "midIdDle"},
 		{"APIProxy", "APIProxy"},
 		{"ApiProxy", "APIProxy"},
 		{"apiProxy", "apiProxy"},

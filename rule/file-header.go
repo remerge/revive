@@ -4,7 +4,7 @@ import (
 	"go/ast"
 	"regexp"
 
-	"github.com/mgechev/revive/lint"
+	"github.com/remerge/revive/lint"
 )
 
 // FileHeaderRule lints given else constructs.

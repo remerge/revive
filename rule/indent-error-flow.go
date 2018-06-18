@@ -4,7 +4,7 @@ import (
 	"go/ast"
 	"go/token"
 
-	"github.com/mgechev/revive/lint"
+	"github.com/remerge/revive/lint"
 )
 
 // IndentErrorFlowRule lints given else constructs.

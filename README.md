@@ -79,7 +79,7 @@ call ale#linter#Define('go', {
 ### Installation
 
 ```bash
-go get -u github.com/mgechev/revive
+go get -u github.com/remerge/revive
 ```
 
 ### Command Line Flags
@@ -87,7 +87,7 @@ go get -u github.com/mgechev/revive
 `revive` accepts three command line parameters:
 
 - `-config [PATH]` - path to config file in TOML format.
-- `-exclude [PATTERN]` - pattern for files/directories/packages to be excluded for linting. You can specify the files you want to exclude for linting either as package name (i.e. `github.com/mgechev/revive`), list them as individual files (i.e. `file.go`), directories (i.e. `./foo/...`), or any combination of the three.
+- `-exclude [PATTERN]` - pattern for files/directories/packages to be excluded for linting. You can specify the files you want to exclude for linting either as package name (i.e. `github.com/remerge/revive`), list them as individual files (i.e. `file.go`), directories (i.e. `./foo/...`), or any combination of the three.
 - `-formatter [NAME]` - formatter to be used for the output. The currently available formatters are:
   - `default` - will output the failures the same way that `golint` does.
   - `json` - outputs the failures in JSON format.
@@ -97,13 +97,13 @@ go get -u github.com/mgechev/revive
 ### Sample Invocations
 
 ```shell
-revive -config revive.toml -exclude file1.go -exclude file2.go -formatter friendly github.com/mgechev/revive package/...
+revive -config revive.toml -exclude file1.go -exclude file2.go -formatter friendly github.com/remerge/revive package/...
 ```
 
 - The command above will use the configuration from `revive.toml`
 - `revive` will ignore `file1.go` and `file2.go`
 - The output will be formatted with the `friendly` formatter
-- The linter will analyze `github.com/mgechev/revive` and the files in `package`
+- The linter will analyze `github.com/remerge/revive` and the files in `package`
 
 ### Comment Annotations
 
@@ -166,18 +166,18 @@ warningCode = 0
 The default configuration of `revive` can be found at `defaults.toml`. This will enable all rules available in `golint` and use their default configuration (i.e. the way they are hardcoded in `golint`).
 
 ```shell
-revive -config defaults.toml github.com/mgechev/revive
+revive -config defaults.toml github.com/remerge/revive
 ```
 
-This will use the configuration file `defaults.toml`, the `default` formatter, and will run linting over the `github.com/mgechev/revive` package.
+This will use the configuration file `defaults.toml`, the `default` formatter, and will run linting over the `github.com/remerge/revive` package.
 
 ### Recommended Configuration
 
 ```shell
-revive -config config.toml -formatter friendly github.com/mgechev/revive
+revive -config config.toml -formatter friendly github.com/remerge/revive
 ```
 
-This will use `config.toml`, the `friendly` formatter, and will run linting over the `github.com/mgechev/revive` package.
+This will use `config.toml`, the `friendly` formatter, and will run linting over the `github.com/remerge/revive` package.
 
 ## Available Rules
 
@@ -317,9 +317,9 @@ Currently, type checking is enabled by default. If you want to run the linter wi
 
 ## Contributors
 
-[<img alt="mgechev" src="https://avatars1.githubusercontent.com/u/455023?v=4&s=117" width="117">](https://github.com/mgechev) |[<img alt="chavacava" src="https://avatars2.githubusercontent.com/u/25788468?v=4&s=117" width="117">](https://github.com/chavacava) |[<img alt="tamird" src="https://avatars0.githubusercontent.com/u/1535036?v=4&s=117" width="117">](https://github.com/tamird) |[<img alt="paul-at-start" src="https://avatars2.githubusercontent.com/u/5486775?v=4&s=117" width="117">](https://github.com/paul-at-start) |[<img alt="vkrol" src="https://avatars3.githubusercontent.com/u/153412?v=4&s=117" width="117">](https://github.com/vkrol) |
+[<img alt="mgechev" src="https://avatars1.githubusercontent.com/u/455023?v=4&s=117" width="117">](https://github.com/remerge) |[<img alt="chavacava" src="https://avatars2.githubusercontent.com/u/25788468?v=4&s=117" width="117">](https://github.com/chavacava) |[<img alt="tamird" src="https://avatars0.githubusercontent.com/u/1535036?v=4&s=117" width="117">](https://github.com/tamird) |[<img alt="paul-at-start" src="https://avatars2.githubusercontent.com/u/5486775?v=4&s=117" width="117">](https://github.com/paul-at-start) |[<img alt="vkrol" src="https://avatars3.githubusercontent.com/u/153412?v=4&s=117" width="117">](https://github.com/vkrol) |
 :---: |:---: |:---: |:---: |:---: |
-[mgechev](https://github.com/mgechev) |[chavacava](https://github.com/chavacava) |[tamird](https://github.com/tamird) |[paul-at-start](https://github.com/paul-at-start) |[vkrol](https://github.com/vkrol) |
+[mgechev](https://github.com/remerge) |[chavacava](https://github.com/chavacava) |[tamird](https://github.com/tamird) |[paul-at-start](https://github.com/paul-at-start) |[vkrol](https://github.com/vkrol) |
 
 ## License
 

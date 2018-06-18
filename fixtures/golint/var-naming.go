@@ -20,7 +20,7 @@ type t_wow struct { // MATCH /don't use underscores in Go names; type t_wow shou
 	Url    *url.URL // MATCH /struct field Url should be URL/
 }
 
-const fooId = "blah" // MATCH /const fooId should be fooID/
+const fooId = "blah"
 
 func f_it() { // MATCH /don't use underscores in Go names; func f_it should be fIt/
 	more_underscore := 4 // MATCH /don't use underscores in Go names; var more_underscore should be moreUnderscore/
@@ -50,7 +50,7 @@ func f_it() { // MATCH /don't use underscores in Go names; func f_it should be f
 
 	var c chan int
 	select {
-	case qId := <-c: // MATCH /var qId should be qID/
+	case qId := <-c:
 		_ = qId
 	}
 }
