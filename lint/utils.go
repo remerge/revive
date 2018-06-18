@@ -56,15 +56,7 @@ func Name(name string) (should string) {
 
 		// [w,i) is a word.
 		word := string(runes[w:i])
-		if u := strings.ToUpper(word); commonInitialisms[u] {
-			// Keep consistent case, which is lowercase only at the start.
-			if w == 0 && unicode.IsLower(runes[w]) {
-				u = strings.ToLower(u)
-			}
-			// All the common initialisms are ASCII,
-			// so we can replace the bytes exactly.
-			copy(runes[w:], []rune(u))
-		} else if w > 0 && strings.ToLower(word) == word {
+		if w > 0 && strings.ToLower(word) == word {
 			// already all lowercase, and not the first word, so uppercase the first character.
 			runes[w] = unicode.ToUpper(runes[w])
 		}
