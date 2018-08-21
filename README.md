@@ -38,6 +38,7 @@ Here's how `revive` is different from `golint`:
     - [Comment Annotations](#comment-annotations)
     - [Configuration](#configuration)
     - [Default Configuration](#default-configuration)
+    - [Custom Configuration](#custom-configuration)
     - [Recommended Configuration](#recommended-configuration)
   - [Available Rules](#available-rules)
   - [Available Formatters](#available-formatters)
@@ -63,6 +64,7 @@ Since the default behavior of `revive` is compatible with `golint`, without prov
 ### Text Editors
 
 - Support for VSCode in [vscode-go](https://github.com/Microsoft/vscode-go/pull/1699).
+- Support for Atom via [linter-revive](https://github.com/morphy2k/linter-revive).
 - Support for vim via [w0rp/ale](https://github.com/w0rp/ale):
 
 ```vim
@@ -89,10 +91,13 @@ go get -u github.com/remerge/revive
 - `-config [PATH]` - path to config file in TOML format.
 - `-exclude [PATTERN]` - pattern for files/directories/packages to be excluded for linting. You can specify the files you want to exclude for linting either as package name (i.e. `github.com/remerge/revive`), list them as individual files (i.e. `file.go`), directories (i.e. `./foo/...`), or any combination of the three.
 - `-formatter [NAME]` - formatter to be used for the output. The currently available formatters are:
+
   - `default` - will output the failures the same way that `golint` does.
   - `json` - outputs the failures in JSON format.
+  - `ndjson` - outputs the failures as stream in newline delimited JSON (NDJSON) format.
   - `friendly` - outputs the failures when found. Shows summary of all the failures.
   - `stylish` - formats the failures in a table. Keep in mind that it doesn't stream the output so it might be perceived as slower compared to others.
+  - `checkstyle` - outputs the failures in XML format compatible with that of Java's [Checkstyle](https://checkstyle.org/).
 
 ### Sample Invocations
 
@@ -117,6 +122,8 @@ func Public() {}
 ```
 
 The snippet above, will disable `revive` between the `revive:disable` and `revive:enable` comments. If you skip `revive:enable`, the linter will be disabled for the rest of the file.
+
+With `revive:disable-next-line` and `revive:disable-line` you can disable `revive` on a particular code line.
 
 You can do the same on a rule level. In case you want to disable only a particular rule, you can use:
 
@@ -171,13 +178,49 @@ revive -config defaults.toml github.com/remerge/revive
 
 This will use the configuration file `defaults.toml`, the `default` formatter, and will run linting over the `github.com/remerge/revive` package.
 
-### Recommended Configuration
+### Custom Configuration
 
 ```shell
 revive -config config.toml -formatter friendly github.com/remerge/revive
 ```
 
 This will use `config.toml`, the `friendly` formatter, and will run linting over the `github.com/remerge/revive` package.
+
+### Recommended Configuration
+
+The following snippet contains the recommended `revive` configuration that you can use in your project:
+
+```toml
+ignoreGeneratedHeader = false
+severity = "warning"
+confidence = 0.8
+errorCode = 0
+warningCode = 0
+
+[rule.blank-imports]
+[rule.context-as-argument]
+[rule.context-keys-type]
+[rule.dot-imports]
+[rule.error-return]
+[rule.error-strings]
+[rule.error-naming]
+[rule.exported]
+[rule.if-return]
+[rule.increment-decrement]
+[rule.var-naming]
+[rule.var-declaration]
+[rule.package-comments]
+[rule.range]
+[rule.receiver-naming]
+[rule.time-naming]
+[rule.unexported-return]
+[rule.indent-error-flow]
+[rule.errorf]
+[rule.empty-block]
+[rule.superfluous-else]
+[rule.unused-parameter]
+[rule.unreachable-code]
+```
 
 ## Available Rules
 
@@ -210,6 +253,18 @@ List of all available rules. The rules ported from `golint` are left unchanged a
 | `file-header`         | string | Header which each file should have.                              |    no    |  no   |
 | `empty-block`         |  n/a   | Warns on empty code blocks                                       |    no    |  no   |
 | `superfluous-else`    |  n/a   | Prevents redundant else statements (extends `indent-error-flow`) |    no    |  no   |
+| `confusing-naming`    |  n/a   | Warns on methods with names that differ only by capitalization   |    no    |  no   |
+| `get-return`          |  n/a   | Warns on getters that do not yield any result                    |    no    |  no   |
+| `modifies-parameter`  |  n/a   | Warns on assignments to function parameters                      |    no    |  no   |
+| `confusing-results`   |  n/a   | Suggests to name potentially confusing function results          |    no    |  no   |
+| `deep-exit`           |  n/a   | Looks for program exits in funcs other than `main()` or `init()` |    no    |  no   |
+| `unused-parameter`    |  n/a   | Suggests to rename or remove unused function parameters          |    no    |  no   |
+| `unreachable-code`    |  n/a   | Warns on unreachable code                                        |    no    |  no   |
+| `add-constant`        |  map   | Suggests using constant for magic numbers and string literals    |    no    |  no   |
+| `flag-parameter`      |  n/a   | Warns on boolean parameters that create a control coupling       |    no    |  no   |
+| `unnecessary-stmt`    |  n/a   | Suggests removing or simplifying unnecessary statements          |    no    |  no   |
+| `struct-tag`          |  n/a   | Checks common struct tags like `json`,`xml`,`yaml`               |    no    |  no   |
+| `modifies-value-receiver` |  n/a   | Warns on assignments to value-passed method receivers        |    no    |  yes  |
 
 ## Available Formatters
 
@@ -317,9 +372,19 @@ Currently, type checking is enabled by default. If you want to run the linter wi
 
 ## Contributors
 
+<<<<<<< HEAD
 [<img alt="mgechev" src="https://avatars1.githubusercontent.com/u/455023?v=4&s=117" width="117">](https://github.com/remerge) |[<img alt="chavacava" src="https://avatars2.githubusercontent.com/u/25788468?v=4&s=117" width="117">](https://github.com/chavacava) |[<img alt="tamird" src="https://avatars0.githubusercontent.com/u/1535036?v=4&s=117" width="117">](https://github.com/tamird) |[<img alt="paul-at-start" src="https://avatars2.githubusercontent.com/u/5486775?v=4&s=117" width="117">](https://github.com/paul-at-start) |[<img alt="vkrol" src="https://avatars3.githubusercontent.com/u/153412?v=4&s=117" width="117">](https://github.com/vkrol) |
 :---: |:---: |:---: |:---: |:---: |
 [mgechev](https://github.com/remerge) |[chavacava](https://github.com/chavacava) |[tamird](https://github.com/tamird) |[paul-at-start](https://github.com/paul-at-start) |[vkrol](https://github.com/vkrol) |
+=======
+| [<img alt="mgechev" src="https://avatars1.githubusercontent.com/u/455023?v=4&s=117" width="117">](https://github.com/mgechev) | [<img alt="chavacava" src="https://avatars2.githubusercontent.com/u/25788468?v=4&s=117" width="117">](https://github.com/chavacava) | [<img alt="morphy2k" src="https://avatars2.githubusercontent.com/u/4280578?v=4&s=117" width="117">](https://github.com/morphy2k) | [<img alt="tamird" src="https://avatars0.githubusercontent.com/u/1535036?v=4&s=117" width="117">](https://github.com/tamird) | [<img alt="paul-at-start" src="https://avatars2.githubusercontent.com/u/5486775?v=4&s=117" width="117">](https://github.com/paul-at-start) | [<img alt="vkrol" src="https://avatars3.githubusercontent.com/u/153412?v=4&s=117" width="117">](https://github.com/vkrol) |
+| :---------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------: |
+|                                             [mgechev](https://github.com/mgechev)                                             |                                              [chavacava](https://github.com/chavacava)                                              |                                             [morphy2k](https://github.com/morphy2k)                                              |                                             [tamird](https://github.com/tamird)                                              |                                             [paul-at-start](https://github.com/paul-at-start)                                              |                                             [vkrol](https://github.com/vkrol)                                             |
+
+| [<img alt="haya14busa" src="https://avatars0.githubusercontent.com/u/3797062?v=4&s=117" width="117">](https://github.com/haya14busa) |
+| :----------------------------------------------------------------------------------------------------------------------------------: |
+|                                             [haya14busa](https://github.com/haya14busa)                                              |
+>>>>>>> upstream/master
 
 ## License
 

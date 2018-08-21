@@ -49,13 +49,27 @@ var allRules = append([]lint.Rule{
 	&rule.FileHeaderRule{},
 	&rule.EmptyBlockRule{},
 	&rule.SuperfluousElseRule{},
+	&rule.ConfusingNamingRule{},
+	&rule.GetReturnRule{},
+	&rule.ModifiesParamRule{},
+	&rule.ConfusingResultsRule{},
+	&rule.DeepExitRule{},
+	&rule.UnusedParamRule{},
+	&rule.UnreachableCodeRule{},
+	&rule.AddConstantRule{},
+	&rule.FlagParamRule{},
+	&rule.UnnecessaryStmtRule{},
+	&rule.StructTagRule{},
+	&rule.ModifiesValRecRule{},
 }, defaultRules...)
 
 var allFormatters = []lint.Formatter{
 	&formatter.Stylish{},
 	&formatter.Friendly{},
 	&formatter.JSON{},
+	&formatter.NDJSON{},
 	&formatter.Default{},
+	&formatter.Checkstyle{},
 }
 
 func getFormatters() map[string]lint.Formatter {
