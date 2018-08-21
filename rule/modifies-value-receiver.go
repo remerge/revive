@@ -4,7 +4,7 @@ import (
 	"go/ast"
 	"strings"
 
-	"github.com/mgechev/revive/lint"
+	"github.com/remerge/revive/lint"
 )
 
 // ModifiesValRecRule lints assignments to value method-receivers.

@@ -2,11 +2,12 @@ package rule
 
 import (
 	"fmt"
-	"github.com/fatih/structtag"
-	"github.com/mgechev/revive/lint"
 	"go/ast"
 	"strconv"
 	"strings"
+
+	"github.com/fatih/structtag"
+	"github.com/remerge/revive/lint"
 )
 
 // StructTagRule lints struct tags.

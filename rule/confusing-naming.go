@@ -7,7 +7,7 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/mgechev/revive/lint"
+	"github.com/remerge/revive/lint"
 )
 
 type referenceMethod struct {

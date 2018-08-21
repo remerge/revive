@@ -2,10 +2,11 @@ package rule
 
 import (
 	"fmt"
-	"github.com/mgechev/revive/lint"
 	"go/ast"
 	"strconv"
 	"strings"
+
+	"github.com/remerge/revive/lint"
 )
 
 const (

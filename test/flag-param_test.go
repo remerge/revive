@@ -3,7 +3,7 @@ package test
 import (
 	"testing"
 
-	"github.com/mgechev/revive/rule"
+	"github.com/remerge/revive/rule"
 )
 
 func TestFlagParam(t *testing.T) {

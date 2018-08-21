@@ -3,8 +3,9 @@ package formatter
 import (
 	"bytes"
 	"encoding/xml"
-	"github.com/mgechev/revive/lint"
 	plainTemplate "text/template"
+
+	"github.com/remerge/revive/lint"
 )
 
 // Checkstyle is an implementation of the Formatter interface
