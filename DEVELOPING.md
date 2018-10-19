@@ -11,7 +11,7 @@ go get -u github.com/remerge/revive
 cd $GOPATH/src/github.com/remerge/revive
 ```
 
-After that install the dependencies using dep:
+After that install the dependencies using go modules:
 
 ```bash
 make install

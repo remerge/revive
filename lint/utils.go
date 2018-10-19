@@ -6,7 +6,7 @@ import (
 )
 
 // Name returns a different name if it should be different.
-func Name(name string) (should string) {
+func Name(name string, whitelist, blacklist []string) (should string) {
 	// Fast path for simple cases: "_" and all lowercase.
 	if name == "_" {
 		return name
