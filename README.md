@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/mgechev/revive.svg?branch=master)](https://travis-ci.org/mgechev/revive)
+[![Build Status](https://travis-ci.org/remerge/revive.svg?branch=master)](https://travis-ci.org/remerge/revive)
 
 # revive
 
