@@ -71,6 +71,8 @@ var allRules = append([]lint.Rule{
 	&rule.WaitGroupByValueRule{},
 	&rule.AtomicRule{},
 	&rule.EmptyLinesRule{},
+	&rule.LineLengthLimitRule{},
+	&rule.CallToGCRule{},
 }, defaultRules...)
 
 var allFormatters = []lint.Formatter{
@@ -81,6 +83,7 @@ var allFormatters = []lint.Formatter{
 	&formatter.Default{},
 	&formatter.Unix{},
 	&formatter.Checkstyle{},
+	&formatter.Plain{},
 }
 
 func getFormatters() map[string]lint.Formatter {
